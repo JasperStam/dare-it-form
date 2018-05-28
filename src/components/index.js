@@ -15,11 +15,13 @@ export const Container = styled('div')`
     border-radius: 10px;
 `;
 
-export const Form = styled('form')`
+export const InnerContainer = styled('div')`
     display: flex;
     flex-direction: column;
     padding: 20px 40px;
 `;
+
+export const Form = InnerContainer.withComponent('form');
 
 export const Header = styled('h2')`
     color: #2a347b;
@@ -104,4 +106,8 @@ export const InlineButton = styled('button')`
         margin-left: 10px;
         content: '❯';
     }
+`;
+
+export const Attribute = styled('bold')`
+    text-transform: capitalize;
 `;

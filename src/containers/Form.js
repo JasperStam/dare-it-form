@@ -8,23 +8,24 @@ import {
     Label,
     FlexRow,
 } from '../components';
+import PropTypes from 'prop-types';
 import RadioInput from '../components/RadioInput';
 import { Formik } from 'formik';
 
 export default class FormContainer extends Component {
-    static initialValues = {
-        name: '',
-        email: '',
-        gender: 'male',
-        pet: 'cats',
+    static propTypes = {
+        onSubmit: PropTypes.func.isRequired,
     };
+
     handleSubmit = (
         values,
         { setSubmitting, setErrors /* setValues and other goodies */ }
     ) => {
-        console.log('submit', values);
+        console.log('handleSubmit');
+        this.props.onSubmit(values);
         setSubmitting(false);
     };
+
     validate = values => {
         let errors = {};
 
@@ -41,9 +42,7 @@ export default class FormContainer extends Component {
         }
         return errors;
     };
-    handleReset = (e, resetFormik) => {
-        resetFormik({ name: '', email: '', gender: 'male', pet: 'cats' });
-    };
+
     render() {
         return (
             <Formik
