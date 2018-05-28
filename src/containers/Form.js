@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
-import { Form, Header, TextInput, Label, RadioLabel } from '../components';
+import {
+    Form,
+    Header,
+    TextInput,
+    Button,
+    InlineButton,
+    Label,
+    RadioLabel,
+    FlexRow,
+} from '../components';
 import RadioInput from '../components/RadioInput';
 import { Formik } from 'formik';
 
@@ -64,54 +73,54 @@ export default class FormContainer extends Component {
                         <TextInput
                             name="name"
                             onChange={handleChange}
+                            placeholder="John Doe"
                             onBlur={handleBlur}
                             value={values.name}
+                            hasError={touched.name && errors.name}
                         />
-                        {touched.name &&
-                            errors.name && <div>{errors.name}</div>}
-                        <Label>Your email</Label>
+                        <Label>Your email address</Label>
                         <TextInput
                             name="email"
                             onChange={handleChange}
+                            placeholder="my@email.adress.com"
                             onBlur={handleBlur}
                             value={values.email}
+                            hasError={touched.email && errors.email}
                         />
-                        {touched.email &&
-                            errors.email && <div>{errors.email}</div>}
-                        <Label>Gender</Label>
-                        <RadioInput
-                            name="gender"
-                            options={['male', 'female', 'other']}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.gender}
-                        />
-                        {touched.gender &&
-                            errors.gender && <div>{errors.gender}</div>}
-                        <Label>Favorite pet</Label>
-                        <select
-                            name="pet"
-                            value={values.pets}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                        >
-                            <option value="cats">Cats</option>
-                            <option value="dogs">Dogs</option>
-                            <option value="birds">Birds</option>
-                        </select>
-                        {touched.pet && errors.pet && <div>{errors.pet}</div>}
-
-                        <button type="submit" disabled={isSubmitting}>
-                            Submit
-                        </button>
-                        <button
+                        <FlexRow>
+                            <div>
+                                <Label>Gender</Label>
+                                <RadioInput
+                                    name="gender"
+                                    options={['male', 'female', 'other']}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.gender}
+                                />
+                            </div>
+                            <div>
+                                <Label>Favorite pet</Label>
+                                <RadioInput
+                                    name="pet"
+                                    options={['cats', 'dogs', 'birds']}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.pet}
+                                    checkboxStyling
+                                />
+                            </div>
+                        </FlexRow>
+                        <Button type="submit" disabled={isSubmitting}>
+                            save & proceed
+                        </Button>
+                        <InlineButton
                             type="text"
                             onClick={() => {
                                 resetFormik();
                             }}
                         >
                             Reset all fields
-                        </button>
+                        </InlineButton>
                     </Form>
                 )}
             />
