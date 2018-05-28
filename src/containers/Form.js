@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Form, Header, Label } from '../components';
+import { Form, Header, TextInput, Label, RadioLabel } from '../components';
+import RadioInput from '../components/RadioInput';
 import { Formik } from 'formik';
 
 export default class FormContainer extends Component {
@@ -59,70 +60,45 @@ export default class FormContainer extends Component {
                 }) => (
                     <Form onSubmit={handleSubmit}>
                         <Header>Fill in the form</Header>
-                        <Label>
-                            Your name
-                            <input
-                                name="name"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.name}
-                            />
-                        </Label>
+                        <Label>Your name</Label>
+                        <TextInput
+                            name="name"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.name}
+                        />
                         {touched.name &&
                             errors.name && <div>{errors.name}</div>}
-                        <Label>
-                            Your email
-                            <input
-                                name="email"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.email}
-                            />
-                        </Label>
+                        <Label>Your email</Label>
+                        <TextInput
+                            name="email"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.email}
+                        />
                         {touched.email &&
                             errors.email && <div>{errors.email}</div>}
-                        <Label>
-                            Gender
-                            <input
-                                name="gender"
-                                type="radio"
-                                value="male"
-                                checked={values.gender === 'male'}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                            />
-                            <input
-                                name="gender"
-                                type="radio"
-                                value="female"
-                                checked={values.gender === 'female'}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                            />
-                            <input
-                                name="gender"
-                                type="radio"
-                                value="other"
-                                checked={values.gender === 'other'}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                            />
-                        </Label>
+                        <Label>Gender</Label>
+                        <RadioInput
+                            name="gender"
+                            options={['male', 'female', 'other']}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.gender}
+                        />
                         {touched.gender &&
                             errors.gender && <div>{errors.gender}</div>}
-                        <Label>
-                            Favorite pet
-                            <select
-                                name="pet"
-                                value={values.pets}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                            >
-                                <option value="cats">Cats</option>
-                                <option value="dogs">Dogs</option>
-                                <option value="birds">Birds</option>
-                            </select>
-                        </Label>
+                        <Label>Favorite pet</Label>
+                        <select
+                            name="pet"
+                            value={values.pets}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        >
+                            <option value="cats">Cats</option>
+                            <option value="dogs">Dogs</option>
+                            <option value="birds">Birds</option>
+                        </select>
                         {touched.pet && errors.pet && <div>{errors.pet}</div>}
 
                         <button type="submit" disabled={isSubmitting}>
@@ -130,8 +106,8 @@ export default class FormContainer extends Component {
                         </button>
                         <button
                             type="text"
-                            onClick={e => {
-                                this.handleReset(e, resetFormik);
+                            onClick={() => {
+                                resetFormik();
                             }}
                         >
                             Reset all fields

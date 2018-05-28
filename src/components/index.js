@@ -31,3 +31,20 @@ export const Label = styled('label')`
     display: block;
     text-transform: uppercase;
 `;
+
+export const RadioLabel = styled('label')`
+    text-transform: capitalize;
+`;
+
+export const RadioGroup = styled('div')`
+    display: flex;
+    flex-direction: column;
+`;
+
+export const TextInput = styled('input')`
+    border: none;
+    background: #ddd;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 3px;
+`;
