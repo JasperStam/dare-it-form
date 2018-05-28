@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Header, InnerContainer, Button, DataKey, Attribute } from './index';
+import { Header, InnerContainer, Button, Attribute } from './index';
+import { LABELS } from '../containers/Form';
 
 export default class Success extends Component {
     static propTypes = {
@@ -12,7 +13,7 @@ export default class Success extends Component {
         const val = this.props.data[key];
         return (
             <li key={key}>
-                <Attribute>{key}:</Attribute> {val}
+                <Attribute>{LABELS[key]}:</Attribute> {val}
             </li>
         );
     };
@@ -22,7 +23,7 @@ export default class Success extends Component {
             <InnerContainer>
                 <Header>Success!</Header>
                 <ul>{Object.keys(data).map(this.renderAttribute)}</ul>
-                <Button type="button" onClick={this.props.goBack}>
+                <Button type="button" onClick={goBack}>
                     Go Back
                 </Button>
             </InnerContainer>

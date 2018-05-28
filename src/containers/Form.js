@@ -12,6 +12,13 @@ import PropTypes from 'prop-types';
 import RadioInput from '../components/RadioInput';
 import { Formik } from 'formik';
 
+export const LABELS = {
+    name: 'Your name',
+    email: 'Your email address',
+    gender: 'Gender',
+    pet: 'Favorite pet',
+};
+
 export default class FormContainer extends Component {
     static propTypes = {
         onSubmit: PropTypes.func.isRequired,
@@ -67,7 +74,7 @@ export default class FormContainer extends Component {
                 }) => (
                     <Form onSubmit={handleSubmit}>
                         <Header>Fill in the form</Header>
-                        <Label>Your name</Label>
+                        <Label>{LABELS.name}</Label>
                         <TextInput
                             name="name"
                             onChange={handleChange}
@@ -76,7 +83,7 @@ export default class FormContainer extends Component {
                             value={values.name}
                             hasError={touched.name && errors.name}
                         />
-                        <Label>Your email address</Label>
+                        <Label>{LABELS.email}</Label>
                         <TextInput
                             name="email"
                             onChange={handleChange}
@@ -87,7 +94,7 @@ export default class FormContainer extends Component {
                         />
                         <FlexRow>
                             <div>
-                                <Label>Gender</Label>
+                                <Label>{LABELS.gender}</Label>
                                 <RadioInput
                                     name="gender"
                                     options={['male', 'female', 'other']}
@@ -97,7 +104,7 @@ export default class FormContainer extends Component {
                                 />
                             </div>
                             <div>
-                                <Label>Favorite pet</Label>
+                                <Label>{LABELS.pet}</Label>
                                 <RadioInput
                                     name="pet"
                                     options={['cats', 'dogs', 'birds']}

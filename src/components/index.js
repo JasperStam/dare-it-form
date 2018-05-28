@@ -108,6 +108,7 @@ export const InlineButton = styled('button')`
     }
 `;
 
-export const Attribute = styled('bold')`
+export const Attribute = styled('span')`
+    font-weight: bold;
     text-transform: capitalize;
 `;
