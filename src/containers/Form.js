@@ -28,6 +28,8 @@ export default class Form extends Component {
                 initialValues={{
                     name: '',
                     email: '',
+                    gender: 'male',
+                    pet: 'cats',
                 }}
                 validate={this.validate}
                 onSubmit={this.handleSubmit}
@@ -41,6 +43,7 @@ export default class Form extends Component {
                     isSubmitting,
                 }) => (
                     <form onSubmit={handleSubmit}>
+                        <h1>Fill in the form</h1>
                         <label>
                             Your name
                             <input
@@ -63,6 +66,46 @@ export default class Form extends Component {
                         </label>
                         {touched.email &&
                             errors.email && <div>{errors.email}</div>}
+                        <label>
+                            Gender
+                            <input
+                                name="gender"
+                                type="radio"
+                                value="male"
+                                checked={values.gender === 'male'}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                            />
+                            <input
+                                name="gender"
+                                type="radio"
+                                value="female"
+                                checked={values.gender === 'female'}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                            />
+                            <input
+                                name="gender"
+                                type="radio"
+                                value="other"
+                                checked={values.gender === 'other'}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                            />
+                        </label>
+                        <label>
+                            Favorite pet
+                            <select
+                                name="pet"
+                                value={values.pets}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                            >
+                                <option value="cats">Cats</option>
+                                <option value="dogs">Dogs</option>
+                                <option value="birds">Birds</option>
+                            </select>
+                        </label>
                         <button type="submit" disabled={isSubmitting}>
                             Submit
                         </button>
