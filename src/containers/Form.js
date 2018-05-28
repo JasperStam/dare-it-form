@@ -10,12 +10,14 @@ export default class Form extends Component {
     };
     validate = values => {
         let errors = {};
-        if (!values.name) {
-            errors.name = 'Required';
-        }
-        if (!values.email) {
-            errors.email = 'Required';
-        } else if (
+
+        ['name', 'email', 'gender', 'pet'].forEach(inputName => {
+            if (!values[inputName]) {
+                errors[inputName] = 'Required';
+            }
+        });
+        if (
+            values.email &&
             !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
         ) {
             errors.email = 'Invalid email address';
@@ -93,6 +95,8 @@ export default class Form extends Component {
                                 onBlur={handleBlur}
                             />
                         </label>
+                        {touched.gender &&
+                            errors.gender && <div>{errors.gender}</div>}
                         <label>
                             Favorite pet
                             <select
@@ -106,6 +110,7 @@ export default class Form extends Component {
                                 <option value="birds">Birds</option>
                             </select>
                         </label>
+                        {touched.pet && errors.pet && <div>{errors.pet}</div>}
                         <button type="submit" disabled={isSubmitting}>
                             Submit
                         </button>
