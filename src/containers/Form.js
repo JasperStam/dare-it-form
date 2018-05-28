@@ -2,11 +2,18 @@ import React, { Component } from 'react';
 import { Formik } from 'formik';
 
 export default class Form extends Component {
+    static initialValues = {
+        name: '',
+        email: '',
+        gender: 'male',
+        pet: 'cats',
+    };
     handleSubmit = (
         values,
         { setSubmitting, setErrors /* setValues and other goodies */ }
     ) => {
         console.log('submit', values);
+        setSubmitting(false);
     };
     validate = values => {
         let errors = {};
@@ -24,15 +31,13 @@ export default class Form extends Component {
         }
         return errors;
     };
+    handleReset = (e, resetFormik) => {
+        resetFormik({ name: '', email: '', gender: 'male', pet: 'cats' });
+    };
     render() {
         return (
             <Formik
-                initialValues={{
-                    name: '',
-                    email: '',
-                    gender: 'male',
-                    pet: 'cats',
-                }}
+                initialValues={Form.initialValues}
                 validate={this.validate}
                 onSubmit={this.handleSubmit}
                 render={({
@@ -43,6 +48,8 @@ export default class Form extends Component {
                     handleBlur,
                     handleSubmit,
                     isSubmitting,
+                    handleReset,
+                    resetForm: resetFormik,
                 }) => (
                     <form onSubmit={handleSubmit}>
                         <h1>Fill in the form</h1>
@@ -111,8 +118,17 @@ export default class Form extends Component {
                             </select>
                         </label>
                         {touched.pet && errors.pet && <div>{errors.pet}</div>}
+
                         <button type="submit" disabled={isSubmitting}>
                             Submit
+                        </button>
+                        <button
+                            type="text"
+                            onClick={e => {
+                                this.handleReset(e, resetFormik);
+                            }}
+                        >
+                            Reset all fields
                         </button>
                     </form>
                 )}
