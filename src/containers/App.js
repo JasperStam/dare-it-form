@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
+import { Background, Container } from '../components';
 import Form from './Form';
 
 export default class App extends Component {
     render() {
         return (
-            <div>
-                <Form />
-            </div>
+            <Background>
+                <Container>
+                    <Form />
+                </Container>
+            </Background>
         );
     }
 }

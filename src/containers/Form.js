@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { Form, Header, Label } from '../components';
 import { Formik } from 'formik';
 
-export default class Form extends Component {
+export default class FormContainer extends Component {
     static initialValues = {
         name: '',
         email: '',
@@ -37,7 +38,12 @@ export default class Form extends Component {
     render() {
         return (
             <Formik
-                initialValues={Form.initialValues}
+                initialValues={{
+                    name: '',
+                    email: '',
+                    gender: 'male',
+                    pet: 'cats',
+                }}
                 validate={this.validate}
                 onSubmit={this.handleSubmit}
                 render={({
@@ -51,9 +57,9 @@ export default class Form extends Component {
                     handleReset,
                     resetForm: resetFormik,
                 }) => (
-                    <form onSubmit={handleSubmit}>
-                        <h1>Fill in the form</h1>
-                        <label>
+                    <Form onSubmit={handleSubmit}>
+                        <Header>Fill in the form</Header>
+                        <Label>
                             Your name
                             <input
                                 name="name"
@@ -61,10 +67,10 @@ export default class Form extends Component {
                                 onBlur={handleBlur}
                                 value={values.name}
                             />
-                        </label>
+                        </Label>
                         {touched.name &&
                             errors.name && <div>{errors.name}</div>}
-                        <label>
+                        <Label>
                             Your email
                             <input
                                 name="email"
@@ -72,10 +78,10 @@ export default class Form extends Component {
                                 onBlur={handleBlur}
                                 value={values.email}
                             />
-                        </label>
+                        </Label>
                         {touched.email &&
                             errors.email && <div>{errors.email}</div>}
-                        <label>
+                        <Label>
                             Gender
                             <input
                                 name="gender"
@@ -101,10 +107,10 @@ export default class Form extends Component {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                             />
-                        </label>
+                        </Label>
                         {touched.gender &&
                             errors.gender && <div>{errors.gender}</div>}
-                        <label>
+                        <Label>
                             Favorite pet
                             <select
                                 name="pet"
@@ -116,7 +122,7 @@ export default class Form extends Component {
                                 <option value="dogs">Dogs</option>
                                 <option value="birds">Birds</option>
                             </select>
-                        </label>
+                        </Label>
                         {touched.pet && errors.pet && <div>{errors.pet}</div>}
 
                         <button type="submit" disabled={isSubmitting}>
@@ -130,7 +136,7 @@ export default class Form extends Component {
                         >
                             Reset all fields
                         </button>
-                    </form>
+                    </Form>
                 )}
             />
         );
