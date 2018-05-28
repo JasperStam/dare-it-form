@@ -1,4 +1,4 @@
-import styled, { css } from 'react-emotion';
+import styled from 'react-emotion';
 
 export const Background = styled('div')`
     background: linear-gradient(165deg, #352cab 10%, #dc6acf);
@@ -51,7 +51,10 @@ export const RadioGroup = styled('div')`
     input {
         ${props =>
             props.checkboxStyling
-                ? '-webkit-appearance: checkbox;'
+                ? `
+                -webkit-appearance: checkbox;
+                -moz-appearance: checkbox;
+                -ms-appearance: checkbox;`
                 : ''} margin-right: 15px;
     }
 `;

@@ -6,7 +6,6 @@ import {
     Button,
     InlineButton,
     Label,
-    RadioLabel,
     FlexRow,
 } from '../components';
 import RadioInput from '../components/RadioInput';

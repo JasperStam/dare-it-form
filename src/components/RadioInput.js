@@ -32,7 +32,7 @@ export default class RadioInput extends Component {
                                 value={option}
                                 checked={value === option}
                                 onChange={onChange}
-                                onBlur={onChange}
+                                onBlur={onBlur}
                             />
                             {option}
                         </RadioLabel>
